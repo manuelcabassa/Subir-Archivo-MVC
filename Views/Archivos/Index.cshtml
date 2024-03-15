@@ -1,0 +1,62 @@
+﻿@model List<ArchivoModel>;
+@{
+    ViewData["Title"] = "Index";
+}
+<h1>Subir archivos</h1>
+<div class="container w-50">
+
+    <div class="form-control">
+        <form method="post" asp-controller="Archivos" asp-action="Upload" enctype="multipart/form-data">
+            <div class="row">
+                <div class="col">
+                    <label class="form-label">Escriba el nombre: </label>
+                    <input type="text" name="Name" id="ejemplo" class="form-control mb-3" />
+                    <label class="form-label" >Seleccione el archivo</label>
+                    <input type="file" multiple name="File" id="ejemplo" class="form-control mb-3" />
+                    <label class="form-label">Seleccione la Fecha</label>
+                    <input type="date" name="Fecha" class="form-control mb-4" />
+                </div>
+                <button type="submit" class="btn btn-primary btn-md">Save</button>
+            </div>
+        </form>
+    </div>
+
+</div>
+
+@* @using (Html.BeginForm("Upload", "Archivos", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <input type="file" name="File" id="fileName" />
+    <button type="submit" class="btn btn-primary">Save</button>
+} *@
+
+
+<div class="container mt-5">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <td>Name</td>
+                <td>Fecha</td>
+                <td>Archivo</td>
+            </tr>
+
+
+
+        </thead>
+        <tbody>
+            @if(Model != null)
+            {
+                @foreach (var file in Model)
+                {
+                    <tr>
+                        <td>@file.Name</td>
+                        <td>@file.Fecha</td>
+                        <td>@file.File</td>
+
+                    </tr>
+                }
+            }
+
+        </tbody>
+    </table>
+</div>
+
